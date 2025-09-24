@@ -1,0 +1,480 @@
+/* TRAVIQUE - GOD TIER INTRO SCREEN */
+/* Ultra Professional Dark Interface with Insane Animations */
+
+.intro-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(ellipse at center, #1a1a1a 0%, #0a0a0a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    overflow: hidden;
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.intro-container.hidden {
+    opacity: 0;
+    transform: scale(1.1);
+    pointer-events: none;
+}
+
+/* Animated Background Patterns */
+.intro-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Animated Grid */
+.cyber-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(51, 51, 51, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(51, 51, 51, 0.3) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s linear infinite;
+    z-index: 1;
+}
+
+@keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+/* Particle System */
+.floating-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: radial-gradient(circle, #ff6b35 0%, transparent 70%);
+    border-radius: 50%;
+    animation: particleFloat 15s infinite linear;
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(100vh) translateX(0) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50px) translateX(100px) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Main Content Container */
+.intro-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 800px;
+    padding: 0 20px;
+    animation: contentReveal 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes contentReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(60px) scale(0.9);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateY(20px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Logo Container with Magnetic Effect */
+.logo-container {
+    margin-bottom: 40px;
+    position: relative;
+    animation: logoEntrance 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.5s both;
+}
+
+@keyframes logoEntrance {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(-180deg);
+    }
+    70% {
+        transform: scale(1.1) rotate(10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* App Title with Gradient Animation */
+.app-title {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    margin: 0;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.app-title:hover {
+    transform: scale(1.05) perspective(1000px) rotateX(10deg);
+}
+
+.title-main {
+    display: block;
+    font-size: clamp(3rem, 8vw, 6rem);
+    background: linear-gradient(45deg, 
+        #ffffff 0%, 
+        #ff6b35 25%, 
+        #ffaa5a 50%, 
+        #ffd700 75%, 
+        #ffffff 100%);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 4s ease-in-out infinite;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.title-sub {
+    display: block;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    color: #b0b0b0;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: subtitleReveal 1s ease-out 1.2s both;
+    position: relative;
+}
+
+@keyframes subtitleReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+        letter-spacing: 1em;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        letter-spacing: 0.3em;
+    }
+}
+
+/* Glowing Lines Effect */
+.title-main::before,
+.title-main::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ff6b35, transparent);
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.8s ease-out;
+}
+
+.title-main::before {
+    top: -10px;
+    animation: lineExpand 2s ease-out 2s both;
+}
+
+.title-main::after {
+    bottom: -10px;
+    animation: lineExpand 2s ease-out 2.3s both;
+}
+
+@keyframes lineExpand {
+    0% { width: 0; }
+    100% { width: 80%; }
+}
+
+/* Intro Message with Typewriter Effect */
+.intro-message {
+    margin-bottom: 50px;
+    opacity: 0;
+    animation: messageReveal 1s ease-out 2s both;
+}
+
+@keyframes messageReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.welcome-text {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    color: #ffffff;
+    margin-bottom: 15px;
+    font-weight: 300;
+    overflow: hidden;
+    border-right: 2px solid #ff6b35;
+    animation: typewriter 3s steps(40) 2.5s both, blink 0.8s step-end infinite;
+}
+
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+.description {
+    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+    color: #999999;
+    font-weight: 300;
+    line-height: 1.6;
+    opacity: 0;
+    animation: descriptionFade 1s ease-out 4s both;
+}
+
+@keyframes descriptionFade {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* CTA Button with Insane Hover Effects */
+.intro-actions {
+    opacity: 0;
+    animation: actionsReveal 1s ease-out 4.5s both;
+}
+
+@keyframes actionsReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.cta-button {
+    position: relative;
+    display: inline-block;
+    padding: 20px 50px;
+    background: transparent;
+    border: 2px solid #333;
+    color: #ffffff;
+    font-family: 'Orbitron', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    backdrop-filter: blur(10px);
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 107, 53, 0.4) 50%, 
+        transparent 100%);
+    transition: left 0.5s ease;
+}
+
+.cta-button:hover::before {
+    left: 100%;
+}
+
+.cta-button:hover {
+    border-color: #ff6b35;
+    color: #ff6b35;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(255, 107, 53, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    text-shadow: 0 0 20px rgba(255, 107, 53, 0.8);
+}
+
+.cta-button:active {
+    transform: translateY(-2px) scale(1.02);
+    transition: transform 0.1s ease;
+}
+
+/* Button Glow Effect */
+.button-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255, 107, 53, 0.6) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.cta-button:hover .button-glow {
+    width: 200px;
+    height: 200px;
+}
+
+/* Scanning Lines Effect */
+.scanning-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 107, 53, 0.03) 50%,
+        transparent 100%
+    );
+    animation: scan 4s linear infinite;
+    z-index: 4;
+}
+
+@keyframes scan {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Holographic Overlay */
+.holographic-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 107, 53, 0.02) 50%,
+        transparent 70%
+    );
+    animation: holographicShift 8s ease-in-out infinite;
+    z-index: 5;
+}
+
+@keyframes holographicShift {
+    0%, 100% {
+        transform: translateX(-50%) skewX(0deg);
+        opacity: 0;
+    }
+    50% {
+        transform: translateX(50%) skewX(10deg);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .intro-content {
+        padding: 0 15px;
+    }
+    
+    .cta-button {
+        padding: 15px 30px;
+        font-size: 0.95rem;
+        letter-spacing: 0.1em;
+    }
+    
+    .cyber-grid {
+        background-size: 30px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-container {
+        margin-bottom: 30px;
+    }
+    
+    .intro-message {
+        margin-bottom: 40px;
+    }
+    
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .intro-container,
+    .intro-content,
+    .logo-container,
+    .title-main,
+    .title-sub,
+    .intro-message,
+    .intro-actions,
+    .cta-button,
+    .particle,
+    .cyber-grid,
+    .scanning-lines,
+    .holographic-overlay {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .welcome-text {
+        border-right: none;
+        overflow: visible;
+    }
+}

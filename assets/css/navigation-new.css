@@ -1,0 +1,493 @@
+/* TRAVIQUE - GOD TIER DARK NAVIGATION STYLES */
+
+/* Bottom Navigation Container */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(30px) saturate(200%);
+    border-top: 1px solid var(--border-subtle);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4);
+    transform: translateY(100%);
+    transition: all var(--transition-slow);
+}
+
+.bottom-nav.active {
+    transform: translateY(0);
+}
+
+.bottom-nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+    opacity: 0.6;
+}
+
+/* Navigation Items Container */
+.nav-items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    max-width: 600px;
+    width: 100%;
+}
+
+/* Individual Navigation Items */
+.nav-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: var(--radius-xl);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    background: transparent;
+    border: 1px solid transparent;
+    min-width: 80px;
+    height: 56px;
+    overflow: hidden;
+}
+
+/* Magnetic Effect Container */
+.nav-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--glass-bg);
+    border-radius: inherit;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all var(--transition-normal);
+    z-index: -2;
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, var(--accent-primary)20, transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform var(--transition-slow);
+    z-index: -1;
+    border-radius: 50%;
+}
+
+.nav-item:hover::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.nav-item:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.nav-item:hover {
+    transform: translateY(-4px) scale(1.05);
+    border-color: var(--border-primary);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Active Navigation Item */
+.nav-item.active {
+    background: var(--glass-hover);
+    border-color: var(--accent-primary);
+    box-shadow: 
+        0 8px 32px rgba(255, 107, 53, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.nav-item.active::before {
+    opacity: 1;
+    transform: scale(1);
+    background: linear-gradient(135deg, var(--accent-primary)10, var(--accent-secondary)05);
+}
+
+.nav-item.active .nav-icon {
+    color: var(--accent-primary);
+    transform: scale(1.1);
+}
+
+.nav-item.active .nav-label {
+    color: var(--primary-text);
+    font-weight: 600;
+}
+
+/* Navigation Icons */
+.nav-icon {
+    font-size: 1.3rem;
+    color: var(--muted-text);
+    transition: all var(--transition-normal);
+    margin-bottom: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+.nav-item:hover .nav-icon {
+    color: var(--primary-text);
+    transform: scale(1.15);
+}
+
+/* Pulse Effect for Active Icon */
+.nav-item.active .nav-icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.3;
+    animation: pulse 2s infinite;
+    z-index: -1;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0.6;
+    }
+    70% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.8);
+        opacity: 0;
+    }
+}
+
+/* Navigation Labels */
+.nav-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--disabled-text);
+    transition: all var(--transition-normal);
+    text-align: center;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 1;
+}
+
+.nav-item:hover .nav-label {
+    color: var(--secondary-text);
+    transform: translateY(-1px);
+}
+
+/* Special Effects for Specific Items */
+.nav-item[data-section="trip"] .nav-icon {
+    background: linear-gradient(135deg, #ff6b35, #ffaa5a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-item[data-section="trip"]:hover .nav-icon {
+    transform: scale(1.15) rotate(10deg);
+}
+
+.nav-item[data-section="map"] .nav-icon {
+    background: linear-gradient(135deg, #00ff88, #44aaff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-item[data-section="map"]:hover .nav-icon {
+    transform: scale(1.15) rotate(-5deg);
+}
+
+.nav-item[data-section="history"] .nav-icon {
+    background: linear-gradient(135deg, #ffd700, #ffaa00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-item[data-section="history"]:hover .nav-icon {
+    transform: scale(1.15) rotateY(15deg);
+}
+
+.nav-item[data-section="profile"] .nav-icon {
+    background: linear-gradient(135deg, #ff44aa, #aa44ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-item[data-section="profile"]:hover .nav-icon {
+    transform: scale(1.15) rotateX(15deg);
+}
+
+/* Notification Badges */
+.nav-badge {
+    position: absolute;
+    top: 4px;
+    right: 12px;
+    width: 18px;
+    height: 18px;
+    background: var(--error);
+    color: var(--primary-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    z-index: 2;
+    animation: bounce 2s infinite;
+    box-shadow: 0 2px 8px rgba(255, 68, 68, 0.4);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-4px);
+    }
+    60% {
+        transform: translateY(-2px);
+    }
+}
+
+/* Ripple Effect */
+.nav-item {
+    overflow: hidden;
+}
+
+.nav-item .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 107, 53, 0.3);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+    .bottom-nav {
+        height: 70px;
+        padding: 0 16px;
+    }
+    
+    .nav-items {
+        gap: 4px;
+    }
+    
+    .nav-item {
+        min-width: 70px;
+        height: 50px;
+        padding: 6px 12px;
+    }
+    
+    .nav-icon {
+        font-size: 1.2rem;
+        margin-bottom: 1px;
+    }
+    
+    .nav-label {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bottom-nav {
+        height: 65px;
+        padding: 0 12px;
+    }
+    
+    .nav-items {
+        gap: 2px;
+    }
+    
+    .nav-item {
+        min-width: 60px;
+        height: 45px;
+        padding: 4px 8px;
+    }
+    
+    .nav-icon {
+        font-size: 1.1rem;
+    }
+    
+    .nav-label {
+        font-size: 9px;
+        letter-spacing: 0.3px;
+    }
+    
+    .nav-badge {
+        width: 16px;
+        height: 16px;
+        font-size: 9px;
+        top: 2px;
+        right: 8px;
+    }
+}
+
+/* Ultra-wide Screen Support */
+@media (min-width: 1920px) {
+    .nav-items {
+        gap: 16px;
+        max-width: 800px;
+    }
+    
+    .nav-item {
+        min-width: 100px;
+        height: 64px;
+        padding: 12px 20px;
+    }
+    
+    .nav-icon {
+        font-size: 1.5rem;
+        margin-bottom: 4px;
+    }
+    
+    .nav-label {
+        font-size: 12px;
+    }
+}
+
+/* Dark Mode Enhancements */
+@media (prefers-color-scheme: dark) {
+    .bottom-nav {
+        background: rgba(8, 8, 8, 0.99);
+        border-top-color: var(--border-primary);
+    }
+    
+    .nav-item:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .nav-item {
+        border: 2px solid var(--border-primary);
+    }
+    
+    .nav-item.active {
+        border-color: var(--accent-primary);
+        background: var(--accent-primary);
+    }
+    
+    .nav-item.active .nav-icon,
+    .nav-item.active .nav-label {
+        color: var(--primary-bg);
+    }
+}
+
+/* Performance Optimizations */
+.nav-item,
+.nav-icon,
+.nav-label {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Accessibility */
+.nav-item:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+.nav-item:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Loading State */
+.bottom-nav.loading .nav-item {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.bottom-nav.loading .nav-item::before {
+    animation: skeleton 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes skeleton {
+    0% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}
+
+/* Special Hover Effects */
+.nav-item:hover {
+    position: relative;
+    z-index: 10;
+}
+
+.nav-item:hover::before {
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Holographic Border Effect */
+.nav-item.active {
+    position: relative;
+}
+
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(45deg, 
+        var(--accent-primary), 
+        var(--accent-secondary), 
+        var(--accent-tertiary), 
+        var(--accent-secondary), 
+        var(--accent-primary)
+    );
+    background-size: 400% 400%;
+    border-radius: inherit;
+    z-index: -1;
+    animation: borderGlow 3s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+@keyframes borderGlow {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}

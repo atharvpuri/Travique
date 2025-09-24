@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travique - Smart Travel Data Collection</title>
+    <meta name="description" content="Advanced travel data collection platform for transportation planning by NATPAC">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/intro.css">
+    <link rel="stylesheet" href="assets/css/navigation.css">
+    <link rel="stylesheet" href="assets/css/trip.css">
+    <link rel="stylesheet" href="assets/css/map.css">
+    <link rel="stylesheet" href="assets/css/auth.css">
+    <link rel="stylesheet" href="assets/css/history.css">
+    <link rel="stylesheet" href="assets/css/modal.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/chatbot.css">
+</head>
+<body>
+    <!-- Intro Screen -->
+    <div id="intro-screen" class="intro-container active">
+        <div class="intro-background">
+            <div class="cyber-grid"></div>
+            <div class="floating-particles"></div>
+        </div>
+        
+        <div class="intro-content">
+            <div class="logo-container">
+                <h1 class="app-title">
+                    <span class="title-main">TRAVIQUE</span>
+                    <span class="title-sub">Smart Travel Intelligence</span>
+                </h1>
+            </div>
+            
+            <div class="intro-message">
+                <p class="welcome-text">Welcome to the future of transportation planning</p>
+                <p class="description">Advanced trip data collection for NATPAC's research initiatives</p>
+            </div>
+            
+            <div class="intro-actions">
+                <button id="enter-app" class="cta-button">
+                    <span class="button-text">ENTER SYSTEM</span>
+                    <span class="button-glow"></span>
+                </button>
+            </div>
+            
+            <div class="intro-footer">
+                <p>Powered by NATPAC Transportation Intelligence</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="main-app" class="main-container">
+        <!-- Navigation Header -->
+        <nav class="main-nav">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <span class="brand-icon"><i class="fas fa-route"></i></span>
+                    <span class="brand-text">TRAVIQUE</span>
+                </div>
+                
+                <div class="nav-menu">
+                    <button class="nav-item active" data-section="home">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </button>
+                    <button class="nav-item" data-section="trip">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>Plan Trip</span>
+                    </button>
+                    <button class="nav-item" data-section="map">
+                        <i class="fas fa-map"></i>
+                        <span>Map View</span>
+                    </button>
+                    <button class="nav-item" data-section="history">
+                        <i class="fas fa-history"></i>
+                        <span>History</span>
+                    </button>
+                </div>
+                
+                <div class="nav-user">
+                    <!-- Authentication Controls -->
+                    <div id="auth-controls" class="auth-section">
+                        <!-- When user is NOT logged in -->
+                        <div id="login-controls" class="login-section">
+                            <button id="google-signin-btn" class="auth-button google-btn">
+                                <i class="fab fa-google"></i>
+                                <span>Sign in with Google</span>
+                            </button>
+                            <button id="email-signin-btn" class="auth-button email-btn">
+                                <i class="fas fa-envelope"></i>
+                                <span>Email Sign In</span>
+                            </button>
+                        </div>
+                        
+                        <!-- When user IS logged in -->
+                        <div id="user-profile" class="user-section" style="display: none;">
+                            <div class="user-info">
+                                <img id="user-avatar" class="user-avatar" src="" alt="User Avatar">
+                                <div class="user-details">
+                                    <span id="user-name" class="user-name">User Name</span>
+                                    <span id="user-email" class="user-email">user@email.com</span>
+                                </div>
+                            </div>
+                            <button id="user-menu-btn" class="user-menu-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div id="user-menu" class="user-dropdown" style="display: none;">
+                                <button class="dropdown-item" id="profile-btn">
+                                    <i class="fas fa-user"></i>
+                                    <span>Profile</span>
+                                </button>
+                                <button class="dropdown-item" id="settings-btn">
+                                    <i class="fas fa-cog"></i>
+                                    <span>Settings</span>
+                                </button>
+                                <button class="dropdown-item" id="signout-btn">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>Sign Out</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Home Dashboard -->
+            <section id="home-section" class="content-section active">
+                <div class="dashboard-header">
+                    <h2 class="section-title">Travel Dashboard</h2>
+                    <p class="section-subtitle">Monitor and manage your travel data collection</p>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="stats-card">
+                        <div class="card-icon">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Total Trips</h3>
+                            <p class="stat-number" id="total-trips-stat">0</p>
+                            <p class="stat-label">Trips completed</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-card">
+                        <div class="card-icon">
+                            <i class="fas fa-road"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Distance Traveled</h3>
+                            <p class="stat-number" id="total-distance-stat">0 km</p>
+                            <p class="stat-label">Total distance</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-card">
+                        <div class="card-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Countries Visited</h3>
+                            <p class="stat-number" id="countries-visited-stat">0</p>
+                            <p class="stat-label">Different countries</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-card">
+                        <div class="card-icon">
+                            <i class="fas fa-city"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Cities Visited</h3>
+                            <p class="stat-number" id="cities-visited-stat">0</p>
+                            <p class="stat-label">Different cities</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="action-buttons">
+                        <button class="action-btn" data-action="new-trip">
+                            <i class="fas fa-plus"></i>
+                            <span>Start New Trip</span>
+                        </button>
+                        <button class="action-btn" data-action="view-map">
+                            <i class="fas fa-map"></i>
+                            <span>View Map</span>
+                        </button>
+                        <button class="action-btn" data-action="trip-history">
+                            <i class="fas fa-list"></i>
+                            <span>Trip History</span>
+                        </button>
+                        <button class="action-btn feedback-btn" id="feedbackBtn">
+                            <i class="fas fa-comment-dots"></i>
+                            <span>Survey</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trip Planning Section -->
+            <section id="trip-section" class="content-section">
+                <div class="trip-header">
+                    <h2 class="section-title">Plan Your Trip</h2>
+                    <p class="section-subtitle">Create detailed trip information for data collection</p>
+                </div>
+                
+                <div class="trip-form-container">
+                    <form id="trip-form" class="trip-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="trip-origin">Origin Location</label>
+                                <div class="input-group">
+                                    <input type="text" id="trip-origin" name="origin" placeholder="Enter starting location">
+                                    <button type="button" class="location-btn" data-field="origin">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="trip-destination">Destination</label>
+                                <div class="input-group">
+                                    <input type="text" id="trip-destination" name="destination" placeholder="Enter destination">
+                                    <button type="button" class="location-btn" data-field="destination">
+                                        <i class="fas fa-flag-checkered"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="departure-time">Departure Time</label>
+                                <input type="datetime-local" id="departure-time" name="departureTime">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="transport-mode">Transport Mode</label>
+                                <select id="transport-mode" name="transportMode">
+                                    <option value="">Select transport mode</option>
+                                    <option value="car">Private Car</option>
+                                    <option value="bus">Bus</option>
+                                    <option value="train">Train</option>
+                                    <option value="metro">Metro</option>
+                                    <option value="taxi">Taxi/Cab</option>
+                                    <option value="bike">Bicycle</option>
+                                    <option value="walk">Walking</option>
+                                    <option value="motorcycle">Motorcycle</option>
+                                    <option value="auto">Auto Rickshaw</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="trip-purpose">Trip Purpose</label>
+                                <select id="trip-purpose" name="tripPurpose">
+                                    <option value="">Select purpose</option>
+                                    <option value="work">Work/Business</option>
+                                    <option value="education">Education</option>
+                                    <option value="shopping">Shopping</option>
+                                    <option value="medical">Medical</option>
+                                    <option value="recreation">Recreation</option>
+                                    <option value="social">Social/Family</option>
+                                    <option value="personal">Personal</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="companions">Number of Companions</label>
+                                <input type="number" id="companions" name="companions" min="0" placeholder="0">
+                            </div>
+                        </div>
+                        
+                        <div class="companion-details" id="companion-details" style="display: none;">
+                            <h4>Companion Details</h4>
+                            <div id="companion-list"></div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="secondary-btn" id="save-draft">
+                                <i class="fas fa-save"></i>
+                                Save Draft
+                            </button>
+                            <button type="submit" class="primary-btn">
+                                <i class="fas fa-route"></i>
+                                Start Trip Tracking
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Map Section -->
+            <section id="map-section" class="content-section">
+                <div class="map-header">
+                    <h2 class="section-title">Interactive Map</h2>
+                    <p class="section-subtitle">Visualize routes and locations with OpenStreetMap</p>
+                </div>
+                
+                <div class="map-container">
+                    <div id="google-map" class="google-map-container"></div>
+                    
+                    <div class="map-controls">
+                        <div class="control-group">
+                            <button class="map-control-btn" id="locate-user" title="Find My Location">
+                                <i class="fas fa-crosshairs"></i>
+                            </button>
+                            <button class="map-control-btn" id="clear-markers" title="Clear Markers">
+                                <i class="fas fa-eraser"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="control-group">
+                            <button class="map-control-btn" id="add-marker" title="Add Marker">
+                                <i class="fas fa-map-pin"></i>
+                            </button>
+                            <button class="map-control-btn" id="calculate-route" title="Calculate Route">
+                                <i class="fas fa-route"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="map-info-panel">
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="marker-count">0 markers</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-ruler"></i>
+                            <span id="route-distance">0 km</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <span id="estimated-time">0 min</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Section -->
+            <section id="history-section" class="content-section">
+                <div class="history-header">
+                    <h2 class="section-title">Trip History</h2>
+                    <p class="section-subtitle">Review your past travel data</p>
+                </div>
+                
+                <div class="history-filters">
+                    <div class="filter-group">
+                        <label for="date-filter">Date Range</label>
+                        <select id="date-filter">
+                            <option value="week">Last Week</option>
+                            <option value="month">Last Month</option>
+                            <option value="quarter">Last 3 Months</option>
+                            <option value="year">Last Year</option>
+                            <option value="all">All Time</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="mode-filter">Transport Mode</label>
+                        <select id="mode-filter">
+                            <option value="all">All Modes</option>
+                            <option value="car">Car</option>
+                            <option value="bus">Bus</option>
+                            <option value="train">Train</option>
+                            <option value="metro">Metro</option>
+                            <option value="taxi">Taxi</option>
+                            <option value="bike">Bicycle</option>
+                            <option value="walk">Walking</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="history-list">
+                    <div class="empty-state">
+                        <i class="fas fa-route"></i>
+                        <h3>No trips recorded yet</h3>
+                        <p>Start planning your first trip to see data here</p>
+                        <button class="primary-btn" data-action="new-trip">
+                            <i class="fas fa-plus"></i>
+                            Plan First Trip
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Email Authentication Modal -->
+        <div id="email-auth-modal" class="modal-overlay" style="display: none;">
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h3 id="modal-title">Sign In to Travique</h3>
+                    <button id="close-modal" class="close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="modal-content">
+                    <!-- Sign In Form -->
+                    <form id="signin-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="signin-email">Email Address</label>
+                            <input type="email" id="signin-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signin-password">Password</label>
+                            <input type="password" id="signin-password" required>
+                        </div>
+                        <button type="submit" class="auth-submit-btn">
+                            <span>Sign In</span>
+                            <i class="fas fa-sign-in-alt"></i>
+                        </button>
+                        <p class="auth-switch">
+                            Don't have an account? 
+                            <a href="#" id="switch-to-signup">Create one</a>
+                        </p>
+                    </form>
+                    
+                    <!-- Sign Up Form -->
+                    <form id="signup-form" class="auth-form" style="display: none;">
+                        <div class="form-group">
+                            <label for="signup-name">Display Name</label>
+                            <input type="text" id="signup-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-email">Email Address</label>
+                            <input type="email" id="signup-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password">Password</label>
+                            <input type="password" id="signup-password" required minlength="6">
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-confirm">Confirm Password</label>
+                            <input type="password" id="signup-confirm" required minlength="6">
+                        </div>
+                        <button type="submit" class="auth-submit-btn">
+                            <span>Create Account</span>
+                            <i class="fas fa-user-plus"></i>
+                        </button>
+                        <p class="auth-switch">
+                            Already have an account? 
+                            <a href="#" id="switch-to-signin">Sign in</a>
+                        </p>
+                    </form>
+                    
+                    <div class="auth-divider">
+                        <span>OR</span>
+                    </div>
+                    
+                    <button id="modal-google-signin" class="auth-button google-btn">
+                        <i class="fab fa-google"></i>
+                        <span>Continue with Google</span>
+                    </button>
+                </div>
+                
+                <div id="auth-error" class="error-message" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Elements -->
+    <div class="background-effects">
+        <div class="cyber-grid-bg"></div>
+        <div class="floating-orbs"></div>
+    </div>
+
+    <!-- Floating Feedback Button -->
+    <div class="floating-feedback" id="floatingFeedback" title="Take our survey">
+        <i class="fas fa-comment-dots"></i>
+        <span class="feedback-text">Survey</span>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="click-sound" preload="auto">
+        <source src="assets/sounds/click.mp3" type="audio/mpeg">
+        <source src="assets/sounds/click.ogg" type="audio/ogg">
+    </audio>
+    <audio id="hover-sound" preload="auto">
+        <source src="assets/sounds/hover.mp3" type="audio/mpeg">
+        <source src="assets/sounds/hover.ogg" type="audio/ogg">
+    </audio>
+
+    <!-- Scripts -->
+    <!-- Google Maps API with callback -->
+    <script>
+        function initGoogleMaps() {
+            console.log('Google Maps API loaded successfully');
+            if (window.mapManager) {
+                window.mapManager.initializeMap();
+            }
+        }
+        
+        function handleGoogleMapsError() {
+            console.error('Google Maps API failed to load');
+            // Show fallback map or error message
+            const mapContainer = document.getElementById('google-map');
+            if (mapContainer) {
+                mapContainer.innerHTML = `
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background: #1a1a1a; color: #fff; text-align: center; padding: 20px;">
+                        <i class="fas fa-map-marked-alt" style="font-size: 48px; color: #666; margin-bottom: 16px;"></i>
+                        <h3 style="margin: 0 0 8px 0; color: #fff;">Map Temporarily Unavailable</h3>
+                        <p style="margin: 0; color: #999;">Using demo mode - full functionality will be restored soon</p>
+                        <button onclick="location.reload()" style="margin-top: 16px; padding: 8px 16px; background: #00d4ff; color: #000; border: none; border-radius: 4px; cursor: pointer;">Retry</button>
+                    </div>
+                `;
+            }
+        }
+    </script>
+    <script async defer 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKQfNLJYDwAd1Md_kfX8cVOq1jT9_lsEE&libraries=places,geometry&callback=initGoogleMaps"
+        onerror="handleGoogleMapsError()">
+    </script>
+    
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc, updateDoc, deleteDoc, collection, addDoc, query, where, orderBy, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAaob8lhUGi_Owki5sqco_N_5aRtcEon1E",
+            authDomain: "travique-38bd7.firebaseapp.com",
+            projectId: "travique-38bd7",
+            storageBucket: "travique-38bd7.firebasestorage.app",
+            messagingSenderId: "293932199851",
+            appId: "1:293932199851:web:5985d62860a3549cfeacee"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Make Firebase services and methods globally available
+        window.firebaseApp = app;
+        window.firebaseAuth = auth;
+        window.firebaseDB = db;
+        
+        // Make Firebase methods globally available
+        window.GoogleAuthProvider = GoogleAuthProvider;
+        window.signInWithPopup = signInWithPopup;
+        window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+        window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+        window.updateProfile = updateProfile;
+        window.signOut = signOut;
+        window.onAuthStateChanged = onAuthStateChanged;
+        
+        // Firestore methods
+        window.doc = doc;
+        window.setDoc = setDoc;
+        window.getDoc = getDoc;
+        window.updateDoc = updateDoc;
+        window.deleteDoc = deleteDoc;
+        window.collection = collection;
+        window.addDoc = addDoc;
+        window.query = query;
+        window.where = where;
+        window.orderBy = orderBy;
+        window.getDocs = getDocs;
+        window.serverTimestamp = serverTimestamp;
+        
+        console.log('🔥 Firebase initialized with all methods');
+    </script>
+    
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/firebase.js"></script>
+    <script src="assets/js/analytics.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/history.js"></script>
+    <script src="assets/js/audio.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/navigation.js"></script>
+    <script src="assets/js/trip.js"></script>
+    <script src="assets/js/map.js"></script>
+    <script src="assets/js/responsive.js"></script>
+    <script src="assets/js/chatbot.js"></script>
+    <script src="assets/js/chatbot-integration.js"></script>
+    <script src="assets/js/chatbot-admin.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

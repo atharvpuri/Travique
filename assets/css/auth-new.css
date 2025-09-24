@@ -1,0 +1,593 @@
+/* TRAVIQUE - GOD TIER DARK AUTH MODAL STYLES */
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px) saturate(120%);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-slow);
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 170, 90, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(0, 255, 136, 0.05) 0%, transparent 50%);
+    animation: backgroundPulse 8s ease-in-out infinite;
+}
+
+@keyframes backgroundPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+/* Modal Container */
+.modal {
+    background: var(--glass-bg);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-2xl);
+    padding: 40px;
+    max-width: 450px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    backdrop-filter: blur(30px) saturate(180%);
+    box-shadow: 
+        var(--shadow-xl),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: scale(0.9) translateY(20px);
+    transition: all var(--transition-slow);
+    position: relative;
+}
+
+.modal-overlay.active .modal {
+    transform: scale(1) translateY(0);
+}
+
+.modal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-surface);
+    border-radius: inherit;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+/* Holographic Border Effect */
+.modal::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        var(--accent-primary), 
+        var(--accent-secondary), 
+        var(--accent-tertiary), 
+        var(--accent-secondary), 
+        var(--accent-primary)
+    );
+    background-size: 400% 400%;
+    border-radius: calc(var(--radius-2xl) + 2px);
+    z-index: -2;
+    animation: borderFlow 4s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+@keyframes borderFlow {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Modal Header */
+.modal-header {
+    text-align: center;
+    margin-bottom: 32px;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 40px;
+    height: 40px;
+    background: var(--glass-bg);
+    border: 1px solid var(--border-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    color: var(--muted-text);
+    backdrop-filter: blur(20px);
+}
+
+.modal-close:hover {
+    background: var(--glass-hover);
+    border-color: var(--error);
+    color: var(--error);
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 4px 16px rgba(255, 68, 68, 0.3);
+}
+
+.modal-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.modal-subtitle {
+    color: var(--muted-text);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Modal Body */
+.modal-body {
+    margin-bottom: 24px;
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--secondary-text);
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+/* Input Fields */
+.form-input {
+    width: 100%;
+    padding: 16px 20px;
+    background: var(--glass-bg);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    color: var(--primary-text);
+    font-size: 16px;
+    transition: all var(--transition-normal);
+    backdrop-filter: blur(20px);
+    position: relative;
+}
+
+.form-input::placeholder {
+    color: var(--disabled-text);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    background: var(--glass-hover);
+    box-shadow: 
+        0 0 0 3px rgba(255, 107, 53, 0.1),
+        var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+/* Floating Label Effect */
+.form-group.floating {
+    position: relative;
+}
+
+.form-group.floating label {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    transition: all var(--transition-normal);
+    pointer-events: none;
+    background: transparent;
+    padding: 0 8px;
+    color: var(--disabled-text);
+}
+
+.form-group.floating .form-input:focus + label,
+.form-group.floating .form-input:not(:placeholder-shown) + label {
+    top: 0;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: var(--accent-primary);
+    background: var(--primary-bg);
+}
+
+/* Password Toggle */
+.password-toggle {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--muted-text);
+    transition: color var(--transition-normal);
+    padding: 4px;
+}
+
+.password-toggle:hover {
+    color: var(--accent-primary);
+}
+
+/* Form Buttons */
+.form-button {
+    width: 100%;
+    padding: 16px;
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: var(--radius-lg);
+    color: var(--primary-bg);
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.form-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left var(--transition-slow);
+}
+
+.form-button:hover::before {
+    left: 100%;
+}
+
+.form-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(255, 107, 53, 0.4);
+}
+
+.form-button:active {
+    transform: translateY(-1px);
+    transition: transform var(--transition-fast);
+}
+
+.form-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Secondary Button */
+.form-button.secondary {
+    background: var(--glass-bg);
+    border: 1px solid var(--border-primary);
+    color: var(--primary-text);
+    backdrop-filter: blur(20px);
+}
+
+.form-button.secondary:hover {
+    background: var(--glass-hover);
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Social Login Buttons */
+.social-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 20px;
+    background: var(--glass-bg);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    color: var(--primary-text);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    backdrop-filter: blur(20px);
+    margin-bottom: 12px;
+}
+
+.social-login:hover {
+    background: var(--glass-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.social-login.google {
+    border-color: #4285f4;
+}
+
+.social-login.google:hover {
+    border-color: #3367d6;
+    box-shadow: 0 4px 16px rgba(66, 133, 244, 0.3);
+}
+
+.social-login.facebook {
+    border-color: #1877f2;
+}
+
+.social-login.facebook:hover {
+    border-color: #166fe5;
+    box-shadow: 0 4px 16px rgba(24, 119, 242, 0.3);
+}
+
+.social-login i {
+    font-size: 1.2rem;
+}
+
+/* Divider */
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 24px 0;
+    color: var(--muted-text);
+    font-size: 14px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-subtle);
+}
+
+.divider span {
+    padding: 0 16px;
+}
+
+/* Form Footer */
+.modal-footer {
+    text-align: center;
+    color: var(--muted-text);
+    font-size: 14px;
+}
+
+.modal-footer a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color var(--transition-normal);
+}
+
+.modal-footer a:hover {
+    color: var(--accent-secondary);
+    text-decoration: underline;
+}
+
+/* Error Messages */
+.error-message {
+    background: rgba(255, 68, 68, 0.1);
+    border: 1px solid var(--error);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    color: var(--error);
+    font-size: 14px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.error-message i {
+    font-size: 16px;
+}
+
+/* Success Messages */
+.success-message {
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid var(--success);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    color: var(--success);
+    font-size: 14px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loading States */
+.form-button.loading {
+    position: relative;
+    color: transparent;
+}
+
+.form-button.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Modal Animations */
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modal {
+        padding: 24px;
+        margin: 16px;
+        max-width: none;
+    }
+    
+    .modal-title {
+        font-size: 1.5rem;
+    }
+    
+    .form-input {
+        padding: 14px 16px;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    .form-button {
+        padding: 14px;
+    }
+    
+    .social-login {
+        padding: 12px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-overlay {
+        padding: 12px;
+    }
+    
+    .modal {
+        padding: 20px;
+    }
+    
+    .modal-close {
+        width: 36px;
+        height: 36px;
+        top: -6px;
+        right: -6px;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .modal {
+        border: 2px solid var(--primary-text);
+    }
+    
+    .form-input {
+        border: 2px solid var(--border-primary);
+    }
+    
+    .form-input:focus {
+        border-color: var(--accent-primary);
+    }
+}
+
+/* Accessibility */
+.modal-overlay[aria-hidden="true"] {
+    display: none;
+}
+
+.form-input:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+.form-button:focus {
+    outline: 2px solid var(--accent-secondary);
+    outline-offset: 2px;
+}
+
+/* Tab Navigation */
+.modal {
+    contain: layout style paint;
+}
+
+.form-input,
+.form-button,
+.social-login,
+.modal-close {
+    position: relative;
+    z-index: 1;
+}
+
+/* Performance Optimizations */
+.modal,
+.form-input,
+.form-button {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Dark Theme Enhancements */
+@media (prefers-color-scheme: dark) {
+    .modal-overlay {
+        background: rgba(0, 0, 0, 0.9);
+    }
+    
+    .modal {
+        background: rgba(15, 15, 15, 0.95);
+    }
+    
+    .form-input {
+        background: rgba(255, 255, 255, 0.02);
+    }
+}
